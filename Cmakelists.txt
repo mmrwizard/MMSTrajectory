@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.11)
+project(MMSTrajectory)
+
+set(CMAKE_CXX_STANDARD 17)
+
+find_package(PCL REQUIRED)
+include_directories(${PCL_INCLUDE_DIRS})
+link_directories(${PCL_LIBRARY_DIRS})
+
+find_package(OpenSceneGraph REQUIRED osg osgDB osgViewer osgGA osgUtil)
+include_directories(${OPENSCENEGRAPH_INCLUDE_DIRS})
+
+# Add the showResult project
+add_executable(ShowResult ShowResult/main.cpp)
+target_link_libraries(ShowResult ${OPENSCENEGRAPH_LIBRARIES})
+
+# Add the ConvertPos project
+add_executable(ConvertPos ConvertPos/main.cpp)
+target_link_libraries(ConvertPos ${OPENSCENEGRAPH_LIBRARIES})
